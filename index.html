@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Guide India</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Switch styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(14px);
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        header.dark-mode {
+            background-color: #1f1f1f;
+        }
+
+        nav ul li a.dark-mode {
+            color: #e0e0e0;
+        }
+        
+        /* Add other dark mode styles for your page as needed */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="TRIPSANGAM.png" alt="TripSangam" width="100">
+            <h1>TRIPSANGAM</h1>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <form id="searchForm">
+                        <input type="text" id="searchInput" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </li>
+                <li><a href="#safar-buddy">Safar Buddy</a></li>
+                <li><a href="#places">Places in India</a></li>
+                <li><a href="#transport-fares">Transport Fares</a></li>
+                <li><a href="#Sign In">Sign In</a></li>
+                <li>
+                    <label class="switch">
+                        <input type="checkbox" id="toggleDarkMode">
+                        <span class="slider"></span>
+                    </label>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="safar-buddy">
+        <img src="SAFAR BUDDY.jpg" alt="safarbudy" width="60">
+        <h2>Safar Buddy</h2>
+        <h3>Select your own guide with a nominal fee. Explore India with local experts.</h3>
+        <button onclick="toggleSafarBuddy()">Find a Guide</button>
+        
+        <div id="guide-profiles" class="hidden">
+            <h3>Available Guides</h3>
+            <div class="profile">
+                <img src="ROUNAK SINGH.jpg" alt="Guide 2">
+                <div class="profile-info">
+                    <h4>ROUNAK SINGH</h4>
+                    <p>Rating: ★★★☆☆ (3/5)</p>
+                    <p>Age : 37</p>
+                    <p>Language: Hindi</p>
+                    <button>Book Guide</button>
+                </div>
+            <div class="profile">
+                <img src="RAMESH SINGH.jpg" alt="Guide 1" width="100" height="90">
+                <div class="profile-info">
+                    <h4>RAMESH SINGH</h4>
+                    <p>Rating: ★★★★☆ (4/5)</p>
+                    <p>Age : 41</p>
+                    <p>Language: Hindi, English</p>
+                    <button>Book Guide</button>
+                </div>
+            </div>
+            <div class="profile">
+                <img src="SURESH VERMA.jpg" alt="Guide 2" width="90" height="90">
+                <div class="profile-info">
+                    <h4>SURESH VARMA</h4>
+                    <p>Rating: ★★★☆☆ (3/5)</p>
+                    <p>Age : 37</p>
+                    <p>Language: Hindi</p>
+                    <button>Book Guide</button>
+                </div>
+                <div class="profile">
+                    <img src="ANURAG GHOSH.png" alt="Guide 2"  height="100">
+                    <div class="profile-info">
+                        <h4>ANURAG GHPSH</h4>
+                        <p>Rating: ★★★☆☆ (3/5)</p>
+                        <p>Age : 37</p>
+                        <p>Language: Hindi</p>
+                        <button>Book Guide</button>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="places">
+        <img src="indian map bg remove.png" alt="places in india" width="60">
+        <h2>Places in India</h2>
+        
+        <h3>Discover the most famous and hidden gems of India.</h3>
+        <div class="place-images">
+            <img src="TAJ_MAHAL.png" alt="Taj Mahal">
+            <img src="INDIA GATE.jpg" alt="India Gate">
+            <img src="SWAMI_VIVEKANANDA_.png" alt="SWAMI VIVEKANANDA TEMPLE">
+        </div>
+        
+        <div class="place-container">
+            <button class="place">Choose place</button>
+        </div>
+    </section>
+
+    <section id="transport-fares">
+        <img src="TRANSPORT_LOGO.png" alt="Transport logo" width="70">
+        <h2>All Transport Fares in India</h2>
+        <h3>Check the latest transport fares for buses, trains, flights, and more.</h3>
+        <button onclick="openTransportFares()">View Fares</button>
+        
+        <div id="locationForm" style="display: none; margin-top: 20px;">
+            <label for="currentLocation">Enter your current location:</label>
+            <input type="text" id="currentLocation" placeholder="e.g., Mumbai">
+            
+            <label for="dropLocation">Enter your drop location:</label>
+            <input type="text" id="dropLocation" placeholder="e.g., Pune">
+            
+            <button onclick="showTransportOptions()">Submit</button>
+        </div>
+        
+        <div id="transportOptions" style="display: none; margin-top: 20px;">
+            <h3>Available Transport Options:</h3>
+            <ul id="faresList"></ul>
+        </div>
+    </section>
+    
+    <script>
+        function openTransportFares() {
+            document.getElementById('locationForm').style.display = 'block';
+        }
+    
+        function showTransportOptions() {
+            const currentLocation = document.getElementById('currentLocation').value.trim().toLowerCase();
+            const dropLocation = document.getElementById('dropLocation').value.trim().toLowerCase();
+    
+            // Define routes and fares
+            const routes = {
+                'kolkata to howrah': [
+                    { type: 'Auto', fare: '₹200' },
+                    { type: 'Bus', fare: '₹150' },
+                    { type: 'Taxi', fare: '₹600' },
+                    { type: 'Train', fare: '₹30' }
+                ],
+                'mahestala to budge budge': [
+                    { type: 'Auto', fare: '₹35' },
+                    { type: 'Bus', fare: '₹25' },
+                    { type: 'Taxi', fare: '₹70' },
+                    { type: 'Train', fare: '₹10' }
+                ],
+                // Add more routes as needed
+            };
+    
+            // Construct the route key
+            const routeKey = `${currentLocation} to ${dropLocation}`;
+            const faresList = document.getElementById('faresList');
+            faresList.innerHTML = ''; // Clear any existing options
+    
+            if (routes[routeKey]) {
+                // Display the transport options for the selected route
+                routes[routeKey].forEach(transport => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${transport.type}: ${transport.fare}`;
+                    faresList.appendChild(listItem);
+                });
+    
+                document.getElementById('transportOptions').style.display = 'block';
+            } else {
+                // Display a message if no information is available for the selected route
+                alert('No transport information available for the selected route.');
+                document.getElementById('transportOptions').style.display = 'none';
+            }
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+            document.querySelectorAll('nav ul li a').forEach(link => link.classList.toggle('dark-mode'));
+        }
+
+        // Add event listener to the dark mode switch
+        document.getElementById('toggleDarkMode').addEventListener('change', toggleDarkMode);
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Tourist Guide India. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+>
